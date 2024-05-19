@@ -15,12 +15,7 @@ const ticketValidationRules = [
   check('priority').isIn(['Low', 'Medium', 'High', 'Urgent']).withMessage('Invalid priority level'),
 ];
 
-router.post('/', ticketValidationRules, async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-  
+router.post('/', ticketValidationRules, async (req, res) => { 
   try {
     const { title, description, category, priority } = req.body;
 
